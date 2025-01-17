@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: klight-api-gateway-admin
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: klight-api-gateway
+      username: klight-api-gateway     # MongoDB username
+      password: klight-api-gateway     # MongoDB password
+      #authentication-database: klight-api-gateway  #Authentication database
+      #auto-index-creation: true   # Automatically create indexes
+      #write-concern: NORMAL       # Write concern level (e.g., MAJORITY, NORMAL)
+      #replica-set: <replica_set_name>  # Replica set name (if applicable)
+
+server:
+  port: 8082
+
