@@ -8,11 +8,22 @@ spring:
       database: klight-api-gateway
       username: klight-api-gateway     # MongoDB username
       password: klight-api-gateway     # MongoDB password
-      #authentication-database: klight-api-gateway  #Authentication database
+      authentication-database: admin  #Authentication database
       #auto-index-creation: true   # Automatically create indexes
       #write-concern: NORMAL       # Write concern level (e.g., MAJORITY, NORMAL)
       #replica-set: <replica_set_name>  # Replica set name (if applicable)
 
+keycloak:
+  introspection-uri: http://127.0.0.1:8080/realms/klight-api-gateway/protocol/openid-connect/token/introspect
+  client-id: klight-api-gateway-admin-connect
+  client-secret: HDYMxWu2G2VWn5u59MJKwECIBd6VTO7E
+
 server:
   port: 8082
 
+logging:
+  level:
+    org.springframework: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web.client: DEBUG
+    com.developerhelperhub.klight.apigateway.admin: TRACE

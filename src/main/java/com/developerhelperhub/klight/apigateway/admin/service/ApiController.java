@@ -2,7 +2,10 @@ package com.developerhelperhub.klight.apigateway.admin.service;
 
 import com.developerhelperhub.klight.apigateway.admin.service.dto.ApiServiceRequest;
 import com.developerhelperhub.klight.apigateway.admin.service.dto.ApiServiceResponse;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,22 +16,22 @@ public class ApiController {
     private ApiService service;
 
     @PostMapping
-    public void create(@RequestBody ApiServiceRequest request) {
+    public void create(@Valid @RequestBody ApiServiceRequest request) {
         service.create(request);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable("id") String id, @RequestBody ApiServiceRequest request) {
+    public void update(@Valid @NotEmpty @PathVariable("id") String id, @Valid @RequestBody ApiServiceRequest request) {
         service.update(id, request);
     }
 
     @GetMapping("/{id}")
-    public ApiServiceResponse get(@PathVariable("id") String id) {
+    public ApiServiceResponse get(@Valid @NotEmpty @PathVariable("id") String id) {
         return service.get(id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") String id) {
+    public void delete(@Valid @NotEmpty @PathVariable("id") String id) {
         service.delete(id);
     }
 

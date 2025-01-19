@@ -6,6 +6,7 @@ import com.developerhelperhub.klight.apigateway.admin.service.dto.ApiServiceResp
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 
@@ -25,6 +26,7 @@ public class ApiService {
     @Autowired
     private ObjectFactory<ApiServiceDelete> deleteFactory;
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void create(ApiServiceRequest request) {
         log.info("Service creating");
 
@@ -37,6 +39,7 @@ public class ApiService {
     }
 
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void update(String id, ApiServiceRequest request) {
         log.info("Service updating");
 
@@ -59,6 +62,7 @@ public class ApiService {
         service.setProtocol(request.protocol());
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ApiServiceResponse get(String id) {
 
         log.info("Service get");
@@ -68,6 +72,7 @@ public class ApiService {
         return service.get(id);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void delete(String id) {
 
         log.info("Service delete");
