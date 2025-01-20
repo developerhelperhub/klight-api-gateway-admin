@@ -71,7 +71,7 @@ public class KecloakJwtConverter {
     }
 
 
-    private List<String> addRolesFromResourceLevel(Map<String, Object> attributes, List<String> roles) {
+    private void addRolesFromResourceLevel(Map<String, Object> attributes, List<String> roles) {
 
         Map<String, Map<String, List<String>>> resourceAccess = (Map<String, Map<String, List<String>>>) attributes.get("resource_access");
 
@@ -81,10 +81,9 @@ public class KecloakJwtConverter {
             roles.addAll(resourceAccess.getOrDefault(this.clientId, Collections.emptyMap()).getOrDefault("roles", Collections.emptyList()));
         }
 
-        return roles;
     }
 
-    private List<String> addRolesFromReleamLevel(Map<String, Object> attributes, List<String> roles) {
+    private void addRolesFromReleamLevel(Map<String, Object> attributes, List<String> roles) {
 
         Map<String, List<String>> releamAccess = (Map<String, List<String>>) attributes.get("realm_access");
 
@@ -93,8 +92,6 @@ public class KecloakJwtConverter {
         if (releamAccess != null) {
             roles.addAll(releamAccess.getOrDefault("roles", Collections.emptyList()));
         }
-
-        return roles;
     }
 
 }
