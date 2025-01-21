@@ -1,14 +1,15 @@
 package com.developerhelperhub.klight.apigateway.admin.service.data;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Data
@@ -18,20 +19,20 @@ public class ApiServiceEntity {
     @Id
     private String id;
 
-    @NotNull
-    @Size(max = 50)
+    @NotEmpty
+    @Size(min=3, max = 50)
     private String name;
 
-    @NotNull
-    @Size(max = 50)
+    @NotEmpty
+    @Size(min=3, max = 50)
     private String host;
 
-    @NotNull
-    @Size(max = 50)
+    @NotEmpty
+    @Size(min=3, max = 50)
     private String path;
 
-    @NotNull
-    @Size(max = 4)
+    @NotEmpty
+    @Size(min = 4, max = 5)
     private String protocol;
 
     @CreatedDate
@@ -39,5 +40,11 @@ public class ApiServiceEntity {
 
     @LastModifiedDate
     private LocalDateTime updatedDatetime;
+
+    @CreatedBy
+    private String createdBy;
+
+    @LastModifiedBy
+    private String updatedBy;
 
 }
